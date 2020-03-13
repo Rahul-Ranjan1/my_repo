@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Make A Post</h1>
+			<h4>Me: {{e}}</h4>
+		</div>
+		<nav class="navbar navbar-default">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <a class="navbar-brand" href="#">My Blog</a>
+		        </div>
+		        <ul class="nav navbar-nav">
+				    <li class="active"><a href="{% url 'hello_hello' %}">Home</a></li>
+				    <li><a href="{% url 'make_a_post' %}">Make a Post</a></li>
+				    <li><a href="{% url 'my_posts' %}">My Posts</a></li>
+				    <li><a href="#">About</a></li>
+		        </ul>
+		        <ul class="nav navbar-nav navbar-right">
+			        <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+			        <li><a href="{% url 'blog' %}"><span class="glyphicon glyphicon-off"></span>Log out</a></li>
+			    </ul>
+		  </div>
+		</nav>
+		<form enctype="multipart/form-data" class="form-horizontal" action="hello" method="POST">
+			{% csrf_token %}
+
+				<!--s{{form.as_p}}-->
+				<div class="form-group">
+					<label class="control-label col-sm-2">Email</label>
+					<div class="col-sm-4">
+						<input type="text" name="email" class="form-control" value="{{e}}" readonly>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">File</label>
+					<div class="col-sm-4">
+						<input type="file" name="image" class="form-control">
+					</div>
+				</div>
+				<div class="col-sm-offset-2 col-sm-4">
+					<input type="submit" name="submit" value="Upload" class="btn btn">
+				</div>
+		</form>	
+		<!--
+			<br><br>
+			<img src="{{MEDIA_URL}}{{image_file}}" width="400" height="400">
+			<br><br>
+		-->
+			
+			
+		
+	</div>
+</body>
+</html>

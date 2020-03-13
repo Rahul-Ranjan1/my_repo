@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<img width="400" height="400" src="{{MEDIA_URL}}{{p.pic}}" />
+			<h1>My Profile</h1>
+			<h4>Me : {{s}}</h4>
+		</div>
+		<nav class="navbar navbar-default">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <a class="navbar-brand" href="#">My Blog</a>
+		        </div>
+		        <ul class="nav navbar-nav">
+				    <li><a href="{% url 'hello_hello' %}">Home</a></li>
+				    <li><a href="{% url 'make_a_post' %}">Make a Post</a></li>
+				    <li><a href="{% url 'my_posts' %}">My Posts</a></li>
+				    <li><a href="{% url 'friends' %}"><span class="glyphicon glyphicon-send"></span> Friends</a></li>
+		        </ul>
+
+		        <ul class="nav navbar-nav navbar-right">
+		        	<li class="dropdown">
+		        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+		        			<span class="glyphicon glyphicon-th-list"></span></span></a>
+		        		<ul class="dropdown-menu list-group">
+		        			<li class="list-group-item list-group-item-danger"><a href="{% url 'deactivate' %}"><span class="glyphicon glyphicon-remove-circle"></span>Deactivate Account</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'group_chat' %}"><span class="glyphicon glyphicon-bullhorn"></span> Group Chat</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'notify' %}"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+		        		</ul>
+		        	</li>
+			        <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+			        <li><a href="{% url 'blog' %}"><span class="glyphicon glyphicon-off"></span>Log out</a></li>
+			    </ul>
+
+		  </div>
+		</nav>
+		<form enctype="multipart/form-data" class="form-horizontal" action="update_data" method="post">
+			{% csrf_token %}
+			<div class="form-group">
+				<label class="control-label col-sm-2">Name</label>
+				<div class="col-sm-4">
+					<input type="text" name="name" class="form-control" value="{{p.name}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Pic</label>
+				<div class="col-sm-4">
+					<input type="file" name="pic_h" class="form-control" value="{{p.pic}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Username</label>
+				<div class="col-sm-4">
+					<input type="text" name="username" class="form-control" value="{{p.username}}">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2">Email</label>
+				<div class="col-sm-4">
+					<input type="text" name="email" class="form-control" value="{{p.email}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Phone</label>
+				<div class="col-sm-4">
+					<input type="tel" name="phone" class="form-control" value="{{p.phone}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Address</label>
+				<div class="col-sm-4">
+					<input type="text" name="address" class="form-control" value="{{p.address}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Business</label>
+				<div class="col-sm-4">
+					<input type="text" name="business" class="form-control" value="{{p.business}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Bio</label>
+				<div class="col-sm-4">
+					<input type="text" name="bio" class="form-control" value="{{p.bio}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Gender</label>
+				<div class="col-sm-4">
+					<select class="form-control" name="gender">
+						{% if p.gender == 'Male' %}
+							<option value="Male" selected>Male</option>
+							<option value="Female">Female</option>
+							<option value="Custom">Custom</option>
+						{% elif p.gender == 'Female' %}
+							<option value="Male">Male</option>
+							<option value="Female" selected>Female</option>
+							<option value="Custom">Custom</option>
+						{% elif p.gender == 'Custom' %}
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Custom" selected>Custom</option>
+						{% endif %}
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Password</label>
+				<div class="col-sm-4">
+					<input type="password" name="password" class="form-control" value="{{p.password}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-4">
+					<input type="submit" name="submit" value="Update" class="btn btn-success">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

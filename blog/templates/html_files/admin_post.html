@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Posts</h1>
+		</div>
+	
+		<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">Admin's Blog</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li><a href="{% url 'Admin_welcome' %}">Persons</a></li>
+						<li class="active"><a href="{% url 'admin_post' %}">Posts</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle = "dropdown" role = "button">
+								<span class="glyphicon glyphicon-th-list"></span></span>
+							</a>
+							<ul class="dropdown-menu list-group">
+								<li class="list-group-item list-group-item-danger">
+									<a href="{% url 'blog' %}">
+										<span class="glyphicon glyphicon-off">Log Out</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+		</nav>
+		{% for p in p %}
+		<div class="well">
+			<form class="form-horizontal" action="admin_removes_post" method="post">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-md-4">
+						<img src="{{MEDIA_URL}}{{p.image_file}}" width="300" height="200" />
+					</div>
+					<div class="col-md-6">
+						<textarea rows="9" class="form-control" readonly>{{p.comments}}</textarea>
+					</div>
+					<div class="col-md-2" class="form-control">
+						<input type="submit" name="submit" value="Remove Post" class="btn btn-danger">
+						<input type="hidden" name="auto" value="{{p.auto}}" class="form-control">
+					</div>
+
+				</div>
+			</form>
+		</div>
+		{% endfor %}
+	</div>
+</body>
+</html>

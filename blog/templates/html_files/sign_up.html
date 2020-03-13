@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Sign up page</h1>
+		</div>
+		<form enctype="multipart/form-data" class="form-horizontal" method="post" action="save_data">
+			{% csrf_token %}
+				<div class="form-group">
+					<label class="control-label col-sm-2">Name</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="Name" placeholder="Enter your name" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Pic</label>
+					<div class="col-sm-4">
+						<input type="file" name="pic_h" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Username</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="username" placeholder="Enter unique username" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Email</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="email" placeholder="Enter your email address" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Phone</label>
+					<div class="col-sm-4">
+						<input type="tel" class="form-control" name="phone" placeholder="Enter your phone number" required>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-2">Address</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="address" placeholder="Enter your address" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Business</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="business" placeholder="eg.Student, Engineer" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Bio</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="bio" placeholder="Enter something about yourself" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Gender</label>
+					<div class="col-sm-4">
+						<select class="form-control" name="gender">
+							<option name = "selected" selected>Select Gender</option>
+							<option name = "Male">Male</option>
+							<option name = "Female">Female</option>
+							<option name = "Custom">Custom</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Password</label>
+					<div class="col-sm-4">
+						<input type="password" class="form-control" name="Password" placeholder="Enter Password" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-4">
+					<input class="btn btn-success" type="submit" name="Submit" value="Submit">
+					</div>
+				</div>
+			</form>
+	</div>
+</body>
+</html>

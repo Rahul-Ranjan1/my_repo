@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			
+			<h1>Blog Site</h1>
+			<h4>Me : {{s.username}}</h4>
+		</div>
+		<nav class="navbar navbar-default">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <a class="navbar-brand" href="#">My Blog</a>
+		        </div>
+		        <ul class="nav navbar-nav">
+				    <li><a href="{% url 'hello_hello' %}">Home</a></li>
+				    <li><a href="{% url 'make_a_post' %}">Make a Post</a></li>
+				    <li><a href="{% url 'my_posts' %}">My Posts</a></li>
+				    <li class="active"><a href="{% url 'friends' %}"><span class="glyphicon glyphicon-send"></span> Friends</a></li>
+		        </ul>
+
+		        <ul class="nav navbar-nav navbar-right">
+		        	<li class="dropdown">
+		        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+		        			<span class="glyphicon glyphicon-th-list"></span></span></a>
+		        		<ul class="dropdown-menu list-group">
+		        			<li class="list-group-item list-group-item-danger"><a href="{% url 'deactivate' %}"><span class="glyphicon glyphicon-trash"></span> Deactivate Account</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'group_chat' %}"><span class="glyphicon glyphicon-bullhorn"></span> Group Chat</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'notify' %}"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+		        		</ul>
+		        	</li>
+			        <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+			        <li><a href="{% url 'blog' %}"><span class="glyphicon glyphicon-off"></span>Log out</a></li>
+			    </ul>
+
+		  </div>
+		</nav>
+		<div class="well">
+			<img src="{{MEDIA_URL}}{{p.pic}}" class="col-sm-offset-4">
+			<h2 class="col-sm-offset-5"><small>{{p.username}}</small></h2>
+		</div>
+		<div class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2"><h2><small>Name</small></h2></label>
+				<div class="col-sm-4"><h2><small>{{p.name}}</small></h2></div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2"><h2><small>Email</small></h2></label>
+				<div class="col-sm-4"><h2><small>{{p.email}}</small></h2></div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2"><h2><small>Business</small></h2></label>
+				<div class="col-sm-4"><h2><small>{{p.business}}</small></h2></div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2"><h2><small>Bio</small></h2></label>
+				<div class="col-sm-4"><h2><small>{{p.bio}}</small></h2></div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2"><h2><small>Gender</small></h2></label>
+				<div class="col-sm-4"><h2><small>{{p.gender}}</small></h2></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Deactivate Account</h1>
+			<h4>Me : {{s}}</h4>
+		</div>
+		<nav class="navbar navbar-default">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <a class="navbar-brand" href="#">My Blog</a>
+		        </div>
+		        <ul class="nav navbar-nav">
+				    <li><a href="{% url 'hello_hello' %}">Home</a></li>
+				    <li><a href="{% url 'make_a_post' %}">Make a Post</a></li>
+				    <li><a href="{% url 'my_posts' %}">My Posts</a></li>
+				    <li><a href="{% url 'friends' %}"><span class="glyphicon glyphicon-send"></span> Friends</a></li>
+		        </ul>
+
+		        <ul class="nav navbar-nav navbar-right">
+		        	<li class="dropdown">
+		        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+		        			<span class="glyphicon glyphicon-th-list"></span></span></a>
+		        		<ul class="dropdown-menu list-group">
+		        			<li class="list-group-item list-group-item-danger"><a href="{% url 'deactivate' %}"><span class="glyphicon glyphicon-remove-circle"></span>Deactivate Account</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'group_chat' %}"><span class="glyphicon glyphicon-bullhorn"></span> Group Chat</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'notify' %}"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+		        		</ul>
+		        	</li>
+			        <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+			        <li><a href="{% url 'blog' %}"><span class="glyphicon glyphicon-off"></span>Log out</a></li>
+			    </ul>
+
+		  </div>
+		</nav>
+		<form class="form-horizontal" action="delete_account" method="get">
+			{% csrf_token %}
+			<div class="form-group">
+				<textarea class="form-control" rows="20" cols="100" readonly>
+This is to inform that your account on this Blog Site would be deleted permanently and you would not be able to login again. The comments on your posts would be deleted permanently, but your comments on the posts of others won't be deleted. If you want to delete your posts you can delete it via My posts navigation bar menu.Your personal details and your posts are our responsibility. However, you can again recreate your Blog Site account whenever you want. We are always ready to welcome and to assist you. You can always write to us at rajeshrahulranjan@gmail.com .
+
+
+If you want to let your posts and comments on it float over here while your account is deactivated, uncheck the checkbox "Do you want to delete your posts too?" or else your posts and comments on them would be deleted permanently. You can preserve your chats with your friends even when you account is deleted. If you want to remove all your personal chats uncheck the checkbox "Do you want to remove all your personal chats?". However, your chats in the group chat won't be deleted to preserve the beauty of group chat.
+
+
+Thank you for your kind support. Wishing you best of luck ahead.
+
+			                                                                                                                      
+Bye
+
+Sincerely,
+Wizard Rahul Ranjan
+				</textarea>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-2">
+						<input type="checkbox" name="toggle_by" checked class="form-control">
+					</div>
+					<div class="col-sm-10">
+						<label class="form-control">Do you want to delete all your posts too?</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						<input class="form-control" type="checkbox" name="chat_toggle" checked>
+					</div>
+					<div class="col-sm-10">
+						<label class="form-control">Do you want to remove all your personal chats?</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						<input class="form-control" type="checkbox" name="toggle" required>
+					</div>
+					<div class="col-sm-10">
+						<label class="form-control">Do you confirm you want to deactivate your account?</label>
+					</div>
+				</div>
+				
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-sm-4">
+					<input type="submit" name="submit" value="Deactivate" class="btn btn-danger">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

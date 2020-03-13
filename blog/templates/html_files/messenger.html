@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			
+			<h1><span class="glyphicon glyphicon-send"></span> Messenger</h1>
+			<h4>Me : {{s.username}}</h4>
+		</div>
+		<nav class="navbar navbar-default">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <a class="navbar-brand" href="#">My Blog</a>
+		        </div>
+		        <ul class="nav navbar-nav">
+				    <li><a href="{% url 'hello_hello' %}">Home</a></li>
+				    <li><a href="{% url 'make_a_post' %}">Make a Post</a></li>
+				    <li><a href="{% url 'my_posts' %}">My Posts</a></li>
+				    <li><a href="{% url 'friends' %}"><span class="glyphicon glyphicon-send"></span> Friends</a></li>
+		        </ul>
+
+		        <ul class="nav navbar-nav navbar-right">
+		        	<li class="dropdown">
+		        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+		        			<span class="glyphicon glyphicon-th-list"></span></span></a>
+		        		<ul class="dropdown-menu list-group">
+		        			<li class="list-group-item list-group-item-danger"><a href="{% url 'deactivate' %}"><span class="glyphicon glyphicon-trash"></span> Deactivate Account</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'group_chat' %}"><span class="glyphicon glyphicon-bullhorn"></span> Group Chat</a></li>
+		        			<li class="list-group-item list-group-item-info"><a href="{% url 'notify' %}"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+		        		</ul>
+		        	</li>
+			        <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+			        <li><a href="{% url 'blog' %}"><span class="glyphicon glyphicon-off"></span>Log out</a></li>
+			    </ul>
+
+		  </div>
+		</nav>
+		<div class="well">
+			<form class="form-horizontal" action="box_chat_save" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<img src="{{MEDIA_URL}}{{p.pic}}" width="300" height="300">
+					<h2><small>{{p.username}}</small></h2>
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" rows="20" readonly>{{message}}</textarea>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-10">
+							<textarea class="form-control" name="message"></textarea>
+						</div>
+						<div class="col-md-2">
+							<input type="submit" name="submit" value="Send" class="btn btn-warning">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<img class="col-sm-offset-8" src="{{MEDIA_URL}}{{s.pic}}" width="300" height="300">
+					<h2 class="col-sm-offset-8"><small>{{s.username}}</small></h2>
+				</div>
+			</form>
+			<form class="form-horizontal" action="clear_chat" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<div class="col-sm-4">
+						<input type="submit" name="clear" value="Clear This Chat History" class="btn btn-danger">
+					</div>
+				</div>
+			</form>
+		</div>
+</body>
+</html>

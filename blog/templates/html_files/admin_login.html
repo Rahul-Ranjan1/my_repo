@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+			<div class="jumbotron">
+				<h1>Welcome Admin</h1>
+					<h4>Just a little Security Check</h4>
+			</div>
+			
+			<form class="form-horizontal" action="admin_login_" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<label class="control-label col-sm-2">Admin Name</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="admin_name" placeholder="Enter username">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Admin Password</label>
+					<div class="col-sm-4">
+						<input type="password" class="form-control" name="admin_password" placeholder="Enter password">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-4">	
+						<input class="btn btn-primary" type="submit" name="Submit" value="Login">
+					</div>
+				</div>
+				<div class="form-group">
+					<a class="control-label col-sm-2" href="{% url 'admin_requests_otp' %}">forgot password</a>
+				</div>
+				<div class="form-group">
+					<a class="control-label col-sm-2" href="{% url 'admin_requests_otp' %}">forgot username</a>
+					<a class="control-label col-sm-2" href="{% url 'blog' %}">Are you an User?</a>
+				</div>
+			</form>
+</body>
+</html>

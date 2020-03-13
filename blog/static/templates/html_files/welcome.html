@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css_files/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js_files/script.js' %}"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Welcom Page</h1>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-hover">
+					{% if L %}
+					{% for a in L %}
+						<tr>
+							<th>{{a.name}}</th>
+							<th>{{a.roll}}</th>
+							<th>{{a.department}}</th>
+							<th>{{a.email}}</th>
+							<th>{{a.password}}</th>
+						</tr>
+					{% endfor %}
+					{% endif %}
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
